@@ -34,12 +34,17 @@ export default function Login() {
   function show() {
     setShowPassword(!showPassword);
   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Form submitted!");
+  };
   return (
     <div className=" bg-slate-100">
       <Navbar />
-      <div className="flex flex-row items-center h-screen my-auto justify-center -mt-16 p-10">
+      <div className="flex flex-row items-center h-screen my-auto justify-center">
         <div
-          className="bg-white p-8 rounded shadow-md w-96 h-96 flex flex-col justify-center align-middle text-center"
+          className="text-white p-8 rounded shadow-md w-96 h-96 flex flex-col justify-center align-middle text-center"
           style={{
             background: `url(${loginBackground})`,
             backgroundSize: "cover",
@@ -47,11 +52,11 @@ export default function Login() {
         >
           <img src={helloIcon} className="w-72 m-auto"></img>
           <p className="font-semibold">Nice to see you again</p>
-          <h1 className="font-bold text-3xl text-blue-900">Welcome back</h1>
+          <h1 className="font-bold text-3xl text-blue-400">Welcome back</h1>
         </div>
         <div className="bg-white p-8 rounded shadow-md w-96 h-96">
           <h2 className=" mb-4 font-bold text-2xl text-blue-900">Login</h2>
-          <form action="" method="post">
+          <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-4">
               <label
                 htmlFor="username"
@@ -63,12 +68,12 @@ export default function Login() {
                 type="text"
                 id="username"
                 name="username"
-                className="mt-1 p-2 border w-full rounded"
+                className="mt-1 p-2 border w-full rounded outline-none"
                 maxLength={50}
-                onChange={validateEmail}
+                onChange={(e) => validateEmail(e.target.value)}
                 required
               />
-              <div className="absolute hidden error h-10 m-[-10px 0] text-xs text-red-900">
+              <div className="error absolute hidden error h-10 m-[-10px 0] text-xs text-red-900">
                 Invalid Email
               </div>
             </div>
@@ -85,13 +90,13 @@ export default function Login() {
                     type={showPassword ? "text" : "password"}
                     id="pass"
                     name="pass"
-                    className="mt-1 p-2 border w-full rounded"
+                    className="mt-1 p-2 border w-full rounded outline-none"
                     maxLength={35}
                     required
                   />
                   <img
                     src={showPassword ? hideIcon : showIcon}
-                    onClick={show}
+                    onClick={() => show()}
                     className="absolute top-3 right-2 cursor-pointer"
                     alt={showPassword ? "Hide Password" : "Show Password"}
                   />
@@ -101,7 +106,7 @@ export default function Login() {
             <button
               type="submit"
               className="bg-blue-700 text-white p-2 rounded hover:bg-blue-900 transition-colors w-full"
-              onClick="this.form.submit()"
+              onClick={(e) => e.preventDefault()}
             >
               Login
             </button>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Navbar(props) {
   const navigate = useNavigate();
   return (
-    <nav className="bg-blue-700 p-4">
+    <nav className="bg-blue-700 p-4 fixed w-screen ">
       <div className="container mx-auto flex justify-between items-center">
         <a href="#" className="text-white text-xl flex space-between">
           <i className="fas fa-triangle m-auto"></i>
@@ -40,7 +40,7 @@ export default function Navbar(props) {
             </li>
             <li>
               <a
-                href="#"
+                onClick={() => navigate("/login")}
                 className="ml-8 p-2 rounded text-black font-semibold bg-white hover:bg-opacity-75 transition-colors"
               >
                 Login
